@@ -1,0 +1,692 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>トラブル対応</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="167a9b4b-af1b-801e-acaf-cead5bc723f7" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/browser-stop_red.svg"/></div><h1 class="page-title">トラブル対応</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-created_by"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesCreatedBy"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 10.4229C6.05176 10.4229 4.54785 11.1133 3.83008 11.9131C2.90039 10.9082 2.33301 9.55469 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 9.55469 13.1064 10.9082 12.1699 11.9131C11.4521 11.1133 9.94824 10.4229 8 10.4229ZM8 9.30176C9.32617 9.30859 10.3516 8.18066 10.3516 6.71094C10.3516 5.33008 9.31934 4.18164 8 4.18164C6.6875 4.18164 5.6416 5.33008 5.64844 6.71094C5.65527 8.18066 6.68066 9.28809 8 9.30176Z"></path></svg></span>作成者</th><td><span class="user"><span class="icon text-icon user-icon"><span class="user-icon-inner">H</span></span>HiraiM</span></td></tr><tr class="property-row property-row-last_edited_by"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesCreatedBy"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 10.4229C6.05176 10.4229 4.54785 11.1133 3.83008 11.9131C2.90039 10.9082 2.33301 9.55469 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 9.55469 13.1064 10.9082 12.1699 11.9131C11.4521 11.1133 9.94824 10.4229 8 10.4229ZM8 9.30176C9.32617 9.30859 10.3516 8.18066 10.3516 6.71094C10.3516 5.33008 9.31934 4.18164 8 4.18164C6.6875 4.18164 5.6416 5.33008 5.64844 6.71094C5.65527 8.18066 6.68066 9.28809 8 9.30176Z"></path></svg></span>最終更新者</th><td><span class="user"><span class="icon text-icon user-icon"><span class="user-icon-inner">H</span></span>HiraiM</span></td></tr><tr class="property-row property-row-last_edited_time"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesCreatedAt"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM4.54102 8.91211H7.99316C8.30078 8.91211 8.54004 8.67285 8.54004 8.37207V3.8877C8.54004 3.58691 8.30078 3.34766 7.99316 3.34766C7.69238 3.34766 7.45312 3.58691 7.45312 3.8877V7.83203H4.54102C4.2334 7.83203 4.00098 8.06445 4.00098 8.37207C4.00098 8.67285 4.2334 8.91211 4.54102 8.91211Z"></path></svg></span>最終更新日時</th><td><time>@2024年12月29日 13:30</time></td></tr></tbody></table></header><div class="page-body"><h2 id="167a9b4b-af1b-810e-853b-cd635c9796ba" class=""><strong>トラブル対応フローチャート（暫定）</strong></h2><figure id="167a9b4b-af1b-8125-ba35-cef73d6212b1" class="image"><a href="トラブル対応フローチャート.png"><img style="width:743.3217189314751px" src="トラブル対応フローチャート.png"/></a></figure><p id="167a9b4b-af1b-819d-bc52-decc69e1b973" class="">
+</p><h2 id="167a9b4b-af1b-8153-ac36-f1c8a687dbf5" class=""><strong>緊急度リスト（早見表）</strong></h2><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>S:幹部全員で検討。会議必須。現在作業中のタスクは緊急一時停止</strong></summary><div class="indented"><ol type="1" id="167a9b4b-af1b-81fc-a10f-c6a17817a032" class="numbered-list" start="1"><li>著作権の侵害が発覚</li></ol><ol type="1" id="167a9b4b-af1b-8118-b0bd-c5831217d270" class="numbered-list" start="2"><li>配信タイトルのガイドライン違反</li></ol><ol type="1" id="167a9b4b-af1b-8140-a915-f61157cd71a8" class="numbered-list" start="3"><li>親族や知人のあらゆる個人情報の漏洩</li></ol><ol type="1" id="167a9b4b-af1b-8146-9b03-c7c313208588" class="numbered-list" start="4"><li>配信者が行う、人種や性別、職業、病気、あらゆるマイノリティに対する否定的または嘲笑的な発言</li></ol><ol type="1" id="167a9b4b-af1b-81f0-b22e-dc3fc9bd1574" class="numbered-list" start="5"><li>視聴者が残す、人種や性別、職業、病気、あらゆるマイノリティに対する否定的または嘲笑的なメッセージ</li></ol><ol type="1" id="167a9b4b-af1b-816a-a60d-f28287ae45cd" class="numbered-list" start="6"><li>意図しないかたちでサムネイルなどのデザインが酷似してしまい、SNSで比較画像の投稿が起こるなど拡散が進行している</li></ol><ol type="1" id="167a9b4b-af1b-813e-ae4c-d185b647e415" class="numbered-list" start="7"><li>公開の有無を問わず、作成者がサムネイルのデザインの意図的な盗用を幹部に隠していた</li></ol><ol type="1" id="167a9b4b-af1b-812c-92a9-c0d6e88be7a2" class="numbered-list" start="8"><li>チート、スマーフ、リアルマネートレードなど、ゲームにおける一般的な違法行為の実行やそれを容認するアクション</li></ol><ol type="1" id="167a9b4b-af1b-8168-9f42-fb274dccf3bc" class="numbered-list" start="9"><li>配信者が行う、特定の企業や組織、製品を貶める発言や、嘲笑的と受け取られそうな発言</li></ol><ol type="1" id="167a9b4b-af1b-8108-9075-fb7e6e87bf5f" class="numbered-list" start="10"><li>アカウントの乗っ取り</li></ol><ol type="1" id="167a9b4b-af1b-81b9-9ed4-c621ad14c84c" class="numbered-list" start="11"><li></li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>A:幹部複数人で検討。会議必須</strong></summary><div class="indented"><ol type="1" id="167a9b4b-af1b-8192-8c59-d0ddaf984a56" class="numbered-list" start="1"><li>配信者当人の本名以外、住所や電話番号などの情報漏洩（当人の希望によっては本名も含まれる）</li></ol><ol type="1" id="167a9b4b-af1b-813e-84f6-e78a06b823eb" class="numbered-list" start="2"><li>公開済みの動画の、YouTube上からの誤った削除</li></ol><ol type="1" id="167a9b4b-af1b-814d-92e1-e2a7d6ba1ccf" class="numbered-list" start="3"><li>意図しないかたちでサムネイルなどのデザインが酷似してしまったが、動画のコメント欄での指摘などYouTube以外にまだ拡散していない状態で収まっている</li></ol><ol type="1" id="167a9b4b-af1b-81a6-a92d-c584be194094" class="numbered-list" start="4"><li>オマージュやミームのつもりだったが攻めすぎて公式からお叱りを受けた</li></ol><ol type="1" id="167a9b4b-af1b-81fb-ae78-f2f47aa931d7" class="numbered-list" start="5"><li>気に入らない視聴者に対し、サブアカウントや知人などを利用して攻撃的なアプローチをとった</li></ol><ol type="1" id="167a9b4b-af1b-81d2-b55f-e59b959a909f" class="numbered-list" start="6"><li>知人が、気に入らない共同配信者または視聴者に対し、何らかの手段を用いて攻撃的なアプローチをとった</li></ol><ol type="1" id="167a9b4b-af1b-8147-be73-ddb534a8b72d" class="numbered-list" start="7"><li>ライブ配信、収録、プライベートを問わず、イラつきから物を叩く、ゲームを放棄する、死体撃ちなどの粗暴な行動が確認された</li></ol><ol type="1" id="167a9b4b-af1b-8103-8b4d-e82fa7f7085d" class="numbered-list" start="8"><li>共同配信者やゲーム中の登場人物に対するイジメ、ハラスメントを視聴者に感じさせる発言や行動など</li></ol><ol type="1" id="167a9b4b-af1b-81b5-9192-caca7a5dcbd5" class="numbered-list" start="9"><li></li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>B:幹部1名以上（発見者を除く）で検討。場合によって会議</strong></summary><div class="indented"><ol type="1" id="167a9b4b-af1b-81af-af3f-dd9471542c03" class="numbered-list" start="1"><li>公開する予定の無い、共有用の動画などが公開されている</li></ol><ol type="1" id="167a9b4b-af1b-81e1-9e0e-e3f625171384" class="numbered-list" start="2"><li>公開している動画内における、Sランクには該当しないタイプの失言や反応の見落とし、修正ミス</li></ol><ol type="1" id="167a9b4b-af1b-8188-8582-c522bac7692d" class="numbered-list" start="3"><li>映像や音声の欠落または色異常、ノイズ、爆音など視聴者にとって不快な現象の見落とし、編集ミス</li></ol><ol type="1" id="167a9b4b-af1b-8195-954b-ee665ef64885" class="numbered-list" start="4"><li>ゲームタイトルの誤り</li></ol><ol type="1" id="167a9b4b-af1b-8133-92e3-d48aa19207f8" class="numbered-list" start="5"><li>動画名やサムネイルにおける強いネタバレ要素の見落とし</li></ol><ol type="1" id="167a9b4b-af1b-810b-854b-f44e6c126add" class="numbered-list" start="6"><li>ライブ配信か収録のどちらかで、イラつきから暴言や皮肉を言う、連続した無視などの陰湿な行動が確認された</li></ol><ol type="1" id="167a9b4b-af1b-81e6-90ef-e601606a244f" class="numbered-list" start="7"><li></li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>C:緊急だが個人で検討。対応前報告を前提とし、対応実行を許可</strong></summary><div class="indented"><ol type="1" id="167a9b4b-af1b-810e-b3ea-c22fc3b8543f" class="numbered-list" start="1"><li>再生リストの順番の誤り</li></ol><ol type="1" id="167a9b4b-af1b-8117-ad59-cf1b4db13681" class="numbered-list" start="2"><li>動画ナンバーの誤り</li></ol><ol type="1" id="167a9b4b-af1b-81a1-a7b8-ec818b5f6e00" class="numbered-list" start="3"><li>視聴者によるコメントの連投、業者によるコメント</li></ol><ol type="1" id="167a9b4b-af1b-8182-961e-f621f63f464e" class="numbered-list" start="4"><li>視聴者へ向けて告知してしまった動画公開時間などの不履行</li></ol><ol type="1" id="167a9b4b-af1b-8135-ab04-f2842f4b4763" class="numbered-list" start="5"><li></li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>D:場合によって緊急として対応</strong></summary><div class="indented"><ol type="1" id="167a9b4b-af1b-811b-b205-da44d006b374" class="numbered-list" start="1"><li>サムネイルの設定ミス</li></ol><ol type="1" id="167a9b4b-af1b-8122-b6ef-e04e9a24e0ca" class="numbered-list" start="2"><li>公式Xや再生リストなどのリンクのミス</li></ol><ol type="1" id="167a9b4b-af1b-81f1-b637-fd3086d977e7" class="numbered-list" start="3"><li>視聴者による、配信者の発言内容の誤りを指摘するコメント</li></ol><ol type="1" id="167a9b4b-af1b-81d2-8686-feb038685a98" class="numbered-list" start="4"><li>ブラウザ側の仕様によって、サムネイルに意図せぬ劣化やズレが生じている</li></ol><ol type="1" id="167a9b4b-af1b-81c2-b2ae-cb5fed1e0467" class="numbered-list" start="5"><li></li></ol></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>E:対応後 報告</strong></summary><div class="indented"><ol type="1" id="167a9b4b-af1b-81e7-a22d-e697f250502e" class="numbered-list" start="1"><li>動画タイトルや概要欄における、ゲームタイトルや動画ナンバー以外の文字の誤字脱字</li></ol><ol type="1" id="167a9b4b-af1b-811b-b53d-c945b837cd5b" class="numbered-list" start="2"><li></li></ol></div></details><h2 id="167a9b4b-af1b-8112-81ae-dccb13144078" class=""><strong>S：幹部全員で検討。会議必須。現在作業中のタスクは緊急一時停止</strong></h2><p id="167a9b4b-af1b-81da-ac89-da36aa97732c" class="">Sランクは「やこうせいアライヴ」の存続そのものだけでなく、各々の人生全体に致命的な悪影響を及ぼす可能性のある問題が該当。緊急性が高く速やかに対応しなければいけないが、全員の連帯責任で慎重な決断を行う必要あり</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>S-1：著作権の侵害が発覚</strong></summary><div class="indented"><p id="167a9b4b-af1b-8128-8113-e8a753e706dc" class="">＜事案例＞<br/>プライベートなゲームプレイでのみ流すことが許諾されたゲーム内の楽曲を配信に乗せてしまった、など。<br/></p><p id="167a9b4b-af1b-8193-8e36-f54d33e177b3" class="">＜対応＞<br/>幹部が事実確認をしたのち、侵害の確定もしくはその可能性が高いと判断した場合はすみやかに動画を非公開に設定する。その後、YouTubeのオフィシャルの「コミュニティ」とXアカウントの双方で「調査中」の旨を視聴者に告知する。この時点で謝罪は行うように。ただし、侵害を認める謝罪ではなく、一旦の非公開化を謝罪するように。その後、落ち着いて再会議し、対応を考え、実行する。全てが片付いたら、再びYouTubeの「コミュニティ」とXアカウントのほうに顛末を説明し、認めて謝罪するべきところは謝罪する。今回の原因となった部分の明示も忘れずに。万が一、違反性が無かったとしても著作権を尊重して引き続き活動していく旨を記載するように。<br/></p><p id="167a9b4b-af1b-8145-be32-cd8bd1044e06" class="">＜事前の防止策＞<br/>楽曲に関してはオプション設定のところに「著作権の楽曲をオフにする」という項目が用意されていることが多い。無い場合はあらかじめBGMのボリュームを0にしてプレイする。その場合、第1回の冒頭でBGMを消している理由をリスク回避として説明するように<br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">S-2：配信タイトルのガイドライン違反</summary><div class="indented"><p id="167a9b4b-af1b-81d2-865c-fff0eaf916c9" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-81a5-948f-f102c2e0c6aa" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-81a4-87c2-dca416a99b62" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">S-3：親族や知人のあらゆる個人情報の漏洩</summary><div class="indented"><p id="167a9b4b-af1b-81e7-a438-f02de9643e8b" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-81f8-b6ea-fb6e78a10464" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-81f6-b27a-db21875e3aef" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">S-4：配信者が行う、人種や性別、職業、病気、あらゆるマイノリティに対する否定的または嘲笑的な発言</summary><div class="indented"><p id="167a9b4b-af1b-81f8-9229-eb908ecb178d" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-81b4-8528-f106aafbdb5f" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-818d-beb9-e6fb05e17112" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">S-5：視聴者が残す、人種や性別、職業、病気、あらゆるマイノリティに対する否定的または嘲笑的なメッセージ</summary><div class="indented"><p id="167a9b4b-af1b-8163-a86c-e6c7e8aa5448" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-81e4-bb69-cf7d90c2aa47" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-817c-8d5c-c242491dbe2f" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">S-6：意図しないかたちでサムネイルなどのデザインが酷似してしまい、SNSで比較画像の投稿が起こるなど拡散が進行している</summary><div class="indented"><p id="167a9b4b-af1b-81a9-a8b5-d6f033c15e7d" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-8156-a862-d4c23ea7d49e" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-81ce-b64d-eab11c138221" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>S-7：公開の有無を問わず、作成者がサムネイルのデザインの意図的な盗用を幹部に隠していた</strong></summary><div class="indented"><p id="167a9b4b-af1b-8151-aab4-fb5f2f660725" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-81c9-b633-c8091263bdcb" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-8111-b587-debf1475ec67" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">S-8：チート、スマーフ、リアルマネートレードなど、ゲームにおける一般的な違法行為の実行やそれを容認するアクション</summary><div class="indented"><p id="167a9b4b-af1b-818b-9cb8-c66c5646ad08" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-81f7-8c48-ed00d8e1a3d2" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-8171-8290-f33585a57d2f" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>S-9：配信者が行う、特定の企業や組織、製品を貶める発言や、嘲笑的と受け取られそうな発言</strong></summary><div class="indented"><p id="167a9b4b-af1b-81bf-9984-c08272221ffa" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-81be-87bb-e0dfbde3906b" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-81d1-b264-fd67f5421388" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>S-10：アカウントの乗っ取り</strong></summary><div class="indented"><p id="167a9b4b-af1b-8167-9065-cf627c5933e5" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-819a-a36c-d7ff1669609e" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-8188-a1fc-f4b8aee50769" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>X-XX：テンプレート</strong></summary><div class="indented"><p id="167a9b4b-af1b-81b1-baa2-d253b07e04ba" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-817e-a04e-d45d84c08b37" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-81ed-aced-df221814f25e" class="">＜事前の防止策＞<br/><br/></p></div></details><p id="167a9b4b-af1b-81dc-b94f-d1918f211d28" class="">
+</p><h2 id="167a9b4b-af1b-810d-ad12-c6c9d0778631" class="">A：幹部複数人で検討。会議必須</h2><p id="167a9b4b-af1b-81c0-bb40-cf4e400bac21" class="">Aランクは「やこうせいアライヴ」のブランドイメージを損なう可能性のある問題が該当。緊急性は高く、複数名の幹部を中心として最善の決断を行う必要あり</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>A-1：配信者当人の本名以外、住所や電話番号などの情報漏洩（当人の希望によっては本名も含まれる）</strong></summary><div class="indented"><p id="167a9b4b-af1b-81fd-9ee8-f3d33d26ed76" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-81fd-89ca-d541841fc803" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-81cd-8b78-cee7e34172f6" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">A-2：公開済みの動画の、YouTube上からの誤った削除</summary><div class="indented"><p id="167a9b4b-af1b-811b-a39c-e0be68775404" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-81fe-96d9-e0c7949bf4d2" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-8105-a0ea-ef9ec98c046f" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">A-3：意図しないかたちでサムネイルなどのデザインが酷似してしまったが、動画のコメント欄での指摘などYouTube以外にまだ拡散していない状態で収まっている</summary><div class="indented"><p id="167a9b4b-af1b-8195-8c81-f9e574962c8c" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-8106-ae2c-f7936d45e133" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-8108-be24-f5b430ed82fd" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">A-4：オマージュやミームのつもりだったが攻めすぎて公式からお叱りを受けた</summary><div class="indented"><p id="167a9b4b-af1b-8148-abac-cda6da185aba" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-81a7-b9a0-efefa4e9f9da" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-81af-8315-c9b4febe3690" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">A-5：気に入らない視聴者に対し、サブアカウントや知人などを利用して攻撃的なアプローチをとった</summary><div class="indented"><p id="167a9b4b-af1b-8162-a916-ccb15ca291d9" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-819f-af80-ecebff59bc13" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-8119-9a5f-dfc49544f2dc" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">A-6：知人が、気に入らない共同配信者または視聴者に対し、何らかの手段を用いて攻撃的なアプローチをとった</summary><div class="indented"><p id="167a9b4b-af1b-819b-8d9b-d913747c4cc2" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-81a5-8bf2-ee84b77819f9" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-813e-9fca-d25abf1ba929" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">A-7：ライブ配信、収録、プライベートを問わず、イラつきから物を叩く、ゲームを放棄する、死体撃ちなどの粗暴な行動が確認された</summary><div class="indented"><p id="167a9b4b-af1b-817c-a973-dae13e5f2038" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-8142-9dca-d00496d73145" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-81ed-b826-d99beb25f05a" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>X-XX：テンプレート</strong></summary><div class="indented"><p id="167a9b4b-af1b-81b9-bcd2-c19b84c0c5f8" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-8129-a2b9-ec20713e56b7" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-815b-9fdb-db3a20f62203" class="">＜事前の防止策＞<br/><br/></p></div></details><p id="167a9b4b-af1b-811a-9606-fa304e242380" class="">
+</p><h2 id="167a9b4b-af1b-8152-a49a-f3893fafb18e" class="">B：幹部1名以上(発見者を除く)で検討。場合によって会議</h2><p id="167a9b4b-af1b-813b-9c47-e33845087601" class="">Bランクは配信に対する意識の稚拙さが露呈することで、登録者数や再生回数に影響を及ぼす可能性のある問題が該当。緊急性は中程度、発見者は必ず幹部を相談役/確認役とし、落ち着いた対応を行うよう意識する</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">B-1：公開する予定の無い、共有用の動画などが一般公開されている</summary><div class="indented"><p id="167a9b4b-af1b-8128-8dcb-c7ed4a3721f4" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-8109-b162-e098f5afddc9" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-8115-b90c-dc28248b7778" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">B-2：公開している動画内における、Sランクには該当しないタイプの失言や反応の見落とし、修正ミス</summary><div class="indented"><p id="167a9b4b-af1b-81ec-a1cb-f18546d1e688" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-8108-b93b-d2876bb88074" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-81cb-9bc3-cdaee8be512b" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">B-3：映像や音声の欠落または色異常、ノイズ、爆音など視聴者にとって不快な現象の見落とし、編集ミス</summary><div class="indented"><p id="167a9b4b-af1b-8134-b2d8-efaeb7dad339" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-81d6-bec9-d6e40477723b" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-813f-b4e9-e5c7e4051545" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">B-4：ゲームタイトルの誤り</summary><div class="indented"><p id="167a9b4b-af1b-81c8-b5d5-cd6dd16e2d8f" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-81a5-885b-e99fc72690ea" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-818d-a67a-e02107425188" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">B-5：動画名やサムネイルにおける強いネタバレ要素の見落とし</summary><div class="indented"><p id="167a9b4b-af1b-8157-b5e1-ce46dc4899db" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-81f8-a4d1-cae841cd433e" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-8196-aa55-d011c179c71a" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">B-6：ライブ配信か収録のどちらかで、イラつきから暴言や皮肉を言う、連続した無視などの陰湿な行動が確認された</summary><div class="indented"><p id="167a9b4b-af1b-81de-96bc-ccc0adae212e" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-81f6-b7e3-ee1a44a8461f" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-8172-b6e9-c89da6fc91c5" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>X-XX：テンプレート</strong></summary><div class="indented"><p id="167a9b4b-af1b-81d6-adaf-d42fa5cdef2b" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-8155-b079-fb2292845611" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-8157-bb4b-fd9c4172c5d0" class="">＜事前の防止策＞<br/><br/></p></div></details><p id="167a9b4b-af1b-81df-a35b-f5de5d973483" class="">
+</p><h2 id="167a9b4b-af1b-81b8-836e-c3256856ae1b" class="">C：緊急だが個人で検討。対応前報告を前提とし、対応実行を許可</h2><p id="167a9b4b-af1b-81d4-9051-ec8ceb1d5cb0" class="">Cランクは配信活動をしていると起こりがちなトラブルだが、起こさないに越したことはなく、スマートに解決したい問題が該当。緊急性は小～中程度、発見者当人は対応前報告をする義務はあるものの、当人が即座に対応実行可能であれば実行に移ってよい。対応後報告をしたあとの承認まで抜かりないように</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">C-1：再生リストの順番の誤り</summary><div class="indented"><p id="167a9b4b-af1b-81ed-8df0-f4db1e255caf" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-813d-ad02-efa486c96db5" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-81e1-9083-eb248038b831" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">C-2：動画ナンバーの誤り</summary><div class="indented"><p id="167a9b4b-af1b-81e3-b3af-ec04927061ed" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-8146-91fe-d4e2a7f26538" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-8135-a966-ece5be3e0eae" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">C-3：視聴者によるコメントの連投、業者によるコメント</summary><div class="indented"><p id="167a9b4b-af1b-81bb-a041-ee39fe7a4254" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-8173-bbf8-d9d16c0bac82" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-81ad-9c67-f80c2ef0b130" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">C-4：視聴者へ向けて告知してしまった動画公開時間などの不履行</summary><div class="indented"><p id="167a9b4b-af1b-817f-bd94-dfdbcea810a6" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-8122-9f64-e53a07aee2e4" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-815a-9917-f9ce6e26854d" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>X-XX：テンプレート</strong></summary><div class="indented"><p id="167a9b4b-af1b-818d-8095-c1988a281e6b" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-8171-8a5f-ffd68f5fc30d" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-8151-ac77-f76dd09b9dc6" class="">＜事前の防止策＞<br/><br/></p></div></details><p id="167a9b4b-af1b-811a-bf8b-fc5f0541d03f" class="">
+</p><h2 id="167a9b4b-af1b-81e1-a107-e9802c136c10" class="">D：場合によって緊急として対応</h2><p id="167a9b4b-af1b-81ac-8250-d9a6e8f586e0" class="">Dランクは配信活動をしていると起こりがちなトラブルだが、気を付けていれば未然に防げる程度の問題が該当。緊急性は基本的に無しとして扱い、発見者当人で解決可能な場合が多いので、対応実行に移ってよい。でも対応後報告は忘れずに。緊急として対応しなくてはならないケースは各項目に記載する</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">D-1：サムネイルの設定ミス</summary><div class="indented"><p id="167a9b4b-af1b-8195-b227-e0db237e0055" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-81a0-ad3b-f276fc9e0b87" class="">＜緊急に該当する例＞<br/><br/></p><p id="167a9b4b-af1b-8117-bb47-cd39c42f5710" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-812b-8388-e694554ac5fb" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">D-2：公式Xや再生リストなどのリンクミス</summary><div class="indented"><p id="167a9b4b-af1b-818f-abb3-f9add67e3fd3" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-81c7-a3b0-f1a4fe0df051" class="">＜緊急に該当する例＞<br/><br/></p><p id="167a9b4b-af1b-8131-9226-f16303141934" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-815f-ad61-d3d4002cd905" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">D-3：視聴者による、配信者の発言内容の誤りを指摘するコメント</summary><div class="indented"><p id="167a9b4b-af1b-81fc-92d8-fb5e70f966d6" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-8113-8323-f53f0d2283dc" class="">＜緊急に該当する例＞<br/><br/></p><p id="167a9b4b-af1b-8188-9acf-e44a2cdd398b" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-8137-a80b-ed8d237bd084" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">D-4 ブラウザ側の仕様によって、サムネイルに意図せぬ劣化やズレが生じている</summary><div class="indented"><p id="167a9b4b-af1b-8171-bcda-d9ecd679ae8f" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-8136-bd76-ceca35c8a482" class="">＜緊急に該当する例＞<br/><br/></p><p id="167a9b4b-af1b-81a5-8c30-f664bffeb2e8" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-81c2-9c8e-f94db922cc16" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>D-XX：テンプレート</strong></summary><div class="indented"><p id="167a9b4b-af1b-819d-9aa5-eda9d0788da6" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-81b5-89f0-e7744df65867" class="">＜緊急に該当する例＞<br/><br/></p><p id="167a9b4b-af1b-8108-bfd8-fd9154c7da16" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-817d-9329-ce218e82ed89" class="">＜事前の防止策＞<br/><br/></p></div></details><p id="167a9b4b-af1b-81ac-a88f-d1ecf9abbf09" class="">
+</p><h2 id="167a9b4b-af1b-81ca-87a4-dd1af369864c" class="">E：対応後報告</h2><p id="167a9b4b-af1b-8134-a0f6-ea538c64e7cc" class="">Eランクは配信分野に関わらず、インターネットの様々なところで目にする些細な問題が該当。緊急性は原則無しとして扱い、発見者当人で解決可能な場合が多いので、対応実行に移ってよい。対応後報告さえ不要と感じるケースも多いと思うが念のため報告を。天文学的な確率で起こり得る、緊急として対応しなくてはならないケースは各項目に記載する</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">E-1：動画タイトルや概要欄における、ゲームタイトルや動画ナンバー以外の文字の誤字脱字</summary><div class="indented"><p id="167a9b4b-af1b-8167-aea1-e75689935e3c" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-8127-b630-dd7441f97404" class="">＜緊急に該当する例＞<br/><br/></p><p id="167a9b4b-af1b-8154-9231-f0baf9ea5403" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-8146-aa38-d1f5a6ce3d1b" class="">＜事前の防止策＞<br/><br/></p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>E-XX：テンプレート</strong></summary><div class="indented"><p id="167a9b4b-af1b-810c-b574-e054912a0420" class="">＜事案例＞<br/><br/></p><p id="167a9b4b-af1b-818e-adcc-d0c9e6b73188" class="">＜緊急に該当する例＞<br/><br/></p><p id="167a9b4b-af1b-8178-bffe-cd8a5f4eb738" class="">＜対応＞<br/><br/></p><p id="167a9b4b-af1b-810d-9962-ffa7beaa53cc" class="">＜事前の防止策＞<br/><br/></p></div></details><p id="167a9b4b-af1b-8102-b7d1-f14d3fcfbb7a" class="">
+</p><p id="167a9b4b-af1b-81a2-b545-dc2617a2800c" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
